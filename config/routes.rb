@@ -1,4 +1,8 @@
 Mash::Application.routes.draw do
+  resources :users
+
+  get "home/index"
+
   resources :musics
 
   # The priority is based upon order of creation:
