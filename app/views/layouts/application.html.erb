@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mash</title>
+  <title>MashCloud</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div id="banner">
+	<h2>
+		Welcome to MashCloud
+	</h2>
+</div>
+
+<div id="bar">
+	<ul>
+		<li><%= link_to "Home", home_url %></li>
+		<li><a href="users">News</a></li>
+		<li><a href="contact.asp">Contact</a></li>
+		<li><a href="about.asp">About</a></li>
+	</ul>
+</div>
+	
 <%= yield %>
 
 </body>
