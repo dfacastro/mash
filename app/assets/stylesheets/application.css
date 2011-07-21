@@ -6,7 +6,7 @@
  *= require_tree . 
 */
 
-#banner {
+#banner h2 {
 	font: small-caps 40px/40px "Arial", serif;
     color: #282;
     text-align: center;
@@ -49,3 +49,12 @@ div#bar {
 #bar a:hover,a:active {
 	background-color:#7A991A;
 }
+
+div#login {
+	float: right;
+}
+div#login div {
+
+	float: right;
+}
+

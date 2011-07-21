@@ -7,8 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	  <% if flash[:alert] %>
+    <p id="notice" ><%= flash[:alert] %></p>
+  <% end %>
 
 <div id="banner">
+	<div id="login">
+	<% unless session[:user_id] %>
+
+		<%= form_tag(login_path) do %>
+		<div>
+			<label for="username">Name:</label>
+			<%= text_field_tag :username, params[:username]%>
+		</div>
+		</br>
+		<div>
+			<label for="password">Password:</label>
+			<%= password_field_tag :password, params[:password]%>
+		</div>
+		</br>
+		<div>
+			<%= submit_tag 'Login'%>
+		</div>
+		<% end %>
+	<% else %>
+
+	
+		<%= button_to 'Logout', logout_path, :method => :delete %>
+	
+	<% end %>
+	</div>
 	<h2>
 		Welcome to MashCloud
 	</h2>

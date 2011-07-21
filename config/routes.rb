@@ -1,15 +1,23 @@
 Mash::Application.routes.draw do
+  
+=begin
   get "session/new"
 
   get "session/create"
 
   get "session/destroy"
-
+=end
   resources :users
 
   get "home/index"
 
   resources :musics
+  
+  controller :session do
+    #get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
