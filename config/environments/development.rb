@@ -24,4 +24,14 @@ Mash::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  
+  FILE_EXTENSIONS = [".png",".gif",".jpg",".jpeg", ".mp3"] #Allowed file types
+ 
+  FILE_TEMP_PATH="#{Rails.root.to_s}/public/temp/" #Where file is initialy uploaded
+ 
+  FILE_MIME_EXTENSIONS =["audio/x-wav","audio/mpeg","audio/gsm","audio/x-gsm","application/pdf", "image/png", "image/gif", "image/jpeg"] #Allowed file types
+   
+  FILE_ROOT_PATH= "#{Rails.root.to_s}/public/saved/" #Where file is uploaded permanently
+   
+  FILE_MAXIMUM_SIZE_FOR_FILE=1048576 #Maximum Size (1MB) define in bytes
 end

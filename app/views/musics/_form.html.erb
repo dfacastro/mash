@@ -1,4 +1,4 @@
-<%= form_for(@music) do |f| %>
+<%= form_for(@music, :url => {:action => "create"}, :html => {:multipart => true}) do |f| %>
   <% if @music.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@music.errors.count, "error") %> prohibited this music from being saved:</h2>
@@ -23,10 +23,7 @@
     <%= f.label :downloadable %><br />
     <%= f.check_box :downloadable %>
   </div>
-  <div class="field">
-    <%= f.label :filename %><br />
-    <%= f.text_field :filename %>
-  </div>
+
   <div class="field">
     <%= f.label :length %><br />
     <%= f.number_field :length %>
@@ -35,7 +32,12 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  <div class="field">
+  	<label for="file">Select file:</label>
+	<%= file_field_tag :file, :accept => 'image/png,image/gif,image/jpeg' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+			
 <% end %>

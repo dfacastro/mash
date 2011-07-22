@@ -45,7 +45,7 @@
 <div id="bar">
 	<ul>
 		<li><%= link_to "Home", home_url %></li>
-		<li><a href="users">News</a></li>
+		<%= ("<li>" + link_to('Upload', upload_url) + '</li>').html_safe if session[:user_id]%>
 		<li><a href="contact.asp">Contact</a></li>
 		<li><a href="about.asp">About</a></li>
 	</ul>

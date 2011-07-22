@@ -41,10 +41,11 @@ class MusicsController < ApplicationController
   # POST /musics.json
   def create
     @music = Music.new(params[:music])
-
+    @music.file = params[:file]
+    
     respond_to do |format|
       if @music.save
-        format.html { redirect_to @music, notice: 'Music was successfully created.' }
+        format.html { redirect_to home_url, notice: 'Music was successfully created.' }
         format.json { render json: @music, status: :created, location: @music }
       else
         format.html { render action: "new" }
@@ -76,8 +77,12 @@ class MusicsController < ApplicationController
     @music.destroy
 
     respond_to do |format|
-      format.html { redirect_to musics_url }
+      format.html { redirect_to home_url }
       format.json { head :ok }
     end
+  end
+  
+  def download
+    
   end
 end

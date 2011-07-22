@@ -4,7 +4,7 @@ one:
   author: MyString
   description: MyText
   downloadable: false
-  filename: MyString
+  filename: MyString1
   length: 1
   title: MyString
 
@@ -12,6 +12,6 @@ two:
   author: MyString
   description: MyText
   downloadable: false
-  filename: MyString
+  filename: MyString2
   length: 1
   title: MyString

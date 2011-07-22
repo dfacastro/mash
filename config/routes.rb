@@ -11,7 +11,14 @@ Mash::Application.routes.draw do
 
   get "home/index"
 
-  resources :musics
+  #resources :musics
+  controller :musics do
+    get 'upload' => :new
+    post 'upload' => :create
+    get 'listen' => :show
+    get 'download' => :download
+    delete 'listen' => :destroy
+  end
   
   controller :session do
     #get 'login' => :new
