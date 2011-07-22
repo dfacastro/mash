@@ -33,5 +33,5 @@ Mash::Application.configure do
    
   FILE_ROOT_PATH= "#{Rails.root.to_s}/public/saved/" #Where file is uploaded permanently
    
-  FILE_MAXIMUM_SIZE_FOR_FILE=1048576 #Maximum Size (1MB) define in bytes
+  FILE_MAXIMUM_SIZE_FOR_FILE=10048576 #Maximum Size (1MB) define in bytes
 end

@@ -1,3 +1,6 @@
+require "mp3info"
+
+
 class Music < ActiveRecord::Base
   before_save :validate_file
 
@@ -6,13 +9,21 @@ class Music < ActiveRecord::Base
 
   attr_accessor :file
   
-  def get_filename
+  public
+  
+  def get_length
+    (self.length/60).to_s + ':' + (self.length%60).to_s
+  end
+  
+
+
+  private
+  
+  def gen_filename
     #define your rename file method
     Time.now.to_i.to_s    
   end
-
-  public
-    
+  
   def validate_file
     begin
       
@@ -21,7 +32,7 @@ class Music < ActiveRecord::Base
         return false
       end
 
-      filename = get_filename
+      filename = gen_filename
       return false if filename.nil?
 
       extension = File.extname(file.original_filename)
@@ -71,6 +82,7 @@ puts mime_extension
         logger.error("#{self.errors.to_xml}")
         self.filename=filename
         self.filename << extension
+        self.length = Mp3Info.open(temp_source).length
         FileUtils.copy_file(temp_source,final_source)
         FileUtils.rm(temp_source) if File.exists?(temp_source)
         return true

@@ -15,6 +15,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem "rake", "0.8.7"
 gem 'RedCloth'
+gem 'ruby-mp3info'
 
 # Use unicorn as the web server
 # gem 'unicorn'
