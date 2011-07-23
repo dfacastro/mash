@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MashCloud</title>
+  <title>sMash</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -28,8 +28,10 @@
 		</br>
 		<div>
 			<%= submit_tag 'Login'%>
+			<% end %>
+			<%= button_to 'New Account', new_user_path, :method => :get %>
 		</div>
-		<% end %>
+		
 	<% else %>
 
 	
@@ -38,7 +40,7 @@
 	<% end %>
 	</div>
 	<h2>
-		Welcome to MashCloud
+		Welcome to sMash
 	</h2>
 </div>
 

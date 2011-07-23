@@ -25,6 +25,22 @@ Mash::Application.configure do
   # Do not compress assets
   config.assets.compress = false
   
+  
+  # E-mail config
+  Mash::Application.configure do
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "domain.of.sender.net",
+      :authentication => "plain",
+      :user_name => "b.boy.souljah",
+      :password => "diogo198989",
+      :enable_starttls_auto => true
+    }
+  end
+  
+  
   FILE_EXTENSIONS = [".png",".gif",".jpg",".jpeg", ".mp3"] #Allowed file types
  
   FILE_TEMP_PATH="#{Rails.root.to_s}/public/temp/" #Where file is initialy uploaded

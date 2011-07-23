@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :musics, :dependent => :destroy
   
   validates :username, :uniqueness => true
-  validates :username, :name, :presence => true
+  validates :username, :name, :email, :presence => true
   
   validates :password, :confirmation => true
   attr_accessor :password_confirmation
