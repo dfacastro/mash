@@ -18,6 +18,7 @@ Mash::Application.routes.draw do
     get 'listen' => :show
     get 'download' => :download
     delete 'listen' => :destroy
+    get 'my_uploads' => :my_uploads
   end
   
   controller :session do

@@ -23,18 +23,13 @@
     <%= f.label :downloadable %><br />
     <%= f.check_box :downloadable %>
   </div>
-
-  <div class="field">
-    <%= f.label :length %><br />
-    <%= f.number_field :length %>
-  </div>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
   	<label for="file">Select file:</label>
-	<%= file_field_tag :file, :accept => 'image/png,image/gif,image/jpeg' %>
+	<%= file_field_tag :file, :accept => 'image/png,image/gif,image/jpeg,audio/mpeg' %>
   </div>
   <div class="actions">
     <%= f.submit %>

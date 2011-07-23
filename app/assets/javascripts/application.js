@@ -6,4 +6,24 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require_tree .
+
+/*
+$(document).ready(function() {
+	$('#lal2').click(function() {
+	  $('#lal').hide('slow', function() {
+	    alert('Animation complete.');
+	  });
+	});
+});
+*/
+
+
+$(document).ready(function() {
+	$('h1').click(function() {
+	  $('h1').hide('slow', function() {
+	    alert($('.str').val());
+	  });
+	});
+});

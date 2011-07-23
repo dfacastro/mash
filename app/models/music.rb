@@ -2,10 +2,14 @@ require "mp3info"
 
 
 class Music < ActiveRecord::Base
+  
+  belongs_to :user
+  
+  
   before_save :validate_file
 
   validates :filename, :uniqueness => true
-  validates :title, :length, :presence => true
+  validates :title, :author, :presence => true
 
   attr_accessor :file
   

@@ -19,15 +19,14 @@
     <td><%= music.description %></td>
     <td><%= music.downloadable %></td>
     <td><%= music.filename %></td>
-    <td><%= music.length %></td>
+    <td><%= music.get_length %></td>
     <td><%= music.title %></td>
-    <td><%= link_to 'Show', music %></td>
-    <td><%= link_to 'Edit', edit_music_path(music) %></td>
-    <td><%= link_to 'Destroy', music, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', listen_path(:id => music.id) %></td>
+    <td><%= link_to 'Destroy', listen_path, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Music', new_music_path %>
+<%= link_to 'New Music', upload_path %>

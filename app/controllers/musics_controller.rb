@@ -42,10 +42,11 @@ class MusicsController < ApplicationController
   def create
     @music = Music.new(params[:music])
     @music.file = params[:file]
+    @music.user_id = session[:user_id]
     
     respond_to do |format|
       if @music.save
-        format.html { redirect_to home_url, notice: 'Music was successfully created.' }
+        format.html { redirect_to my_uploads_url, notice: 'Music was successfully created.' }
         format.json { render json: @music, status: :created, location: @music }
       else
         format.html { render action: "new" }
@@ -84,5 +85,10 @@ class MusicsController < ApplicationController
   
   def download
     
+  end
+  
+  def my_uploads
+    @musics = Music.where(:user_id => session[:user_id])
+    render(:index)
   end
 end

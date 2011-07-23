@@ -7,7 +7,6 @@ class MusicsControllerTest < ActionController::TestCase
                   :author => 'Diogo',
                   :description => "Diogo's masterpiece",
                   :downloadable => 'true',
-                  :length => 123,
                   :title => 'Drop the beat'
               )
   end
@@ -26,11 +25,11 @@ class MusicsControllerTest < ActionController::TestCase
   test "should create music" do
     assert_difference('Music.count') do
       #file = Rack::Test::UploadedFile.new('files/folder.jpg', "image/jpg")
-      @file = fixture_file_upload('files/folder.jpg','image/jpg')
+      @file = fixture_file_upload('files/faixa8.mp3','audio/mpeg')
       post :create, music: @music_new.attributes, file: @file
     end
 
-    assert_redirected_to home_url # music_path(assigns(:music))
+    assert_redirected_to my_uploads_url # music_path(assigns(:music))
   end
 
 =begin

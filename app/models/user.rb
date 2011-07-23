@@ -1,5 +1,6 @@
 require 'digest/sha2'
 class User < ActiveRecord::Base
+  has_many :musics, :dependent => :destroy
   
   validates :username, :uniqueness => true
   validates :username, :name, :presence => true

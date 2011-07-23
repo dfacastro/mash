@@ -1,35 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Author:</b>
-  <%= @music.author %>
-</p>
+<h1><%= @music.title %></h1>
+<h2>by <%= @music.author %> </h2>
+<h3>uploaded by <%= @music.user.name %></h3>
 
-<p>
-  <b>Description:</b>
-  <%= @music.description %>
-</p>
-
-<p>
-  <b>Downloadable:</b>
-  <%= @music.downloadable %>
-</p>
-
-<p>
-  <b>Filename:</b>
-  <%= @music.filename %>
-</p>
-
-<p>
-  <b>Length:</b>
-  <%= @music.length %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @music.title %>
-</p>
+<input type="hidden" id="file_url" value="<%= @music.filename %>">
+<div id="player">
+<p id="desc"><%= @music.description %></p>
+</div>
 
 
-<%= link_to 'Edit', edit_music_path(@music) %> |
-<%= link_to 'Back', musics_path %>
+
+<%= link_to 'Back', :back %>

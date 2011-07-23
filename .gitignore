@@ -6,3 +6,4 @@ tmp/
 doc/*
 public/saved/*
 public/temp/*
+test/fixtures/files/*
