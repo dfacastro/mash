@@ -44,8 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
-        Notifier.new_account(@user, request.remote_ip).deliver
+        Notifier.new_account(@user, request.remote_ip, request.host_with_port, request.protocol ).deliver
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -82,4 +81,22 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def confirm_account
+    begin
+      @user = User.find(params[:id])
+      if @user.confirmation_code == params[:code]
+        @user.confirmed = true
+        @user.save
+        session[:user_id] = @user.id
+        Notifier.account_confirmed(@user, request.host_with_port, request.protocol ).deliver
+        redirect_to home_url, :alert => 'Account validated successfully!'
+      else
+        redirect_to home_url, :alert => 'Invalid confirmation code!'
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to home_url, :alert => 'Invalid account'
+    end
+  end
+  
 end

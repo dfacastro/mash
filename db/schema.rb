@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723145850) do
+ActiveRecord::Schema.define(:version => 20110723153210) do
 
   create_table "musics", :force => true do |t|
     t.string   "author"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20110723145850) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
+    t.string   "confirmation_code"
+    t.boolean  "confirmed"
   end
 
 end

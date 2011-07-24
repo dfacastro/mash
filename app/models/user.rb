@@ -1,6 +1,9 @@
 require 'digest/sha2'
+
 class User < ActiveRecord::Base
   has_many :musics, :dependent => :destroy
+  
+  before_create :generate_confirmation_code
   
   validates :username, :uniqueness => true
   validates :username, :name, :email, :presence => true
@@ -12,6 +15,11 @@ class User < ActiveRecord::Base
   validate :password_must_be_present
   
   private
+  def generate_confirmation_code
+    self.confirmed = false
+    self.confirmation_code = SecureRandom.base64(13)
+  end
+  
   def password_must_be_present
     errors.add(:password, "Missing Password") unless hashed_password.present?
   end

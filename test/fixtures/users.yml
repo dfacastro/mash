@@ -11,6 +11,8 @@ one:
   city: MyString
   country: MyString
   occupation: MyString
+  confirmed: true
+  email: a@a.com
 
 two:
   username: MyString
@@ -21,3 +23,4 @@ two:
   city: MyString
   country: MyString
   occupation: MyString
+  email: a@a.com

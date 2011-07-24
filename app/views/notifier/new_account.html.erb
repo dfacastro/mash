@@ -1,0 +1,11 @@
+
+Hey there!
+<br/>
+<br/> A new <%= link_to 'sMash', {:controller => "home", :action => "index" , :host => @host, :protocol => @protocol} %> account was created using this e-mail from the following ip
+<br/><%= @ip %>
+<br/>
+<br/>The credentials are as follows:
+<br/>Username: <%= @user.username %>
+<br/>Password: <%= @user.password %><br/>
+<br/>If you wish to confirm this action, click <%= link_to 'here', {:controller => "users", :action => "confirm_account" , :id => @user.id, :code => @user.confirmation_code, :host => @host, :protocol => @protocol, :method => :post} %>
+<br/>If you did not create this account, simply ignore this e-mail.

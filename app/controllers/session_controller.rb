@@ -4,10 +4,14 @@ class SessionController < ApplicationController
 
   def create
     if user = User.authenticate(params[:username], params[:password])
-      session[:user_id] = user.id
-      redirect_to home_url
+      if user.confirmed
+        session[:user_id] = user.id
+        redirect_to home_url
+      else
+        redirect_to home_url, :alert => 'This account has yet to be confirmed. Please check your e-mail.'
+      end
     else
-      redirect_to home_url, :alert => 'Invalid user/password combination'
+      redirect_to home_url, :alert => 'Invalid user/password combination.'
     end    
     
   end

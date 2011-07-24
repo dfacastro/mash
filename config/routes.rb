@@ -8,6 +8,7 @@ Mash::Application.routes.draw do
   get "session/destroy"
 =end
   resources :users
+  match 'confirm_account', :to => 'users#confirm_account', :method => :post
 
   get "home/index"
 
