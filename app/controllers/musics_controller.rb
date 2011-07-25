@@ -14,6 +14,9 @@ class MusicsController < ApplicationController
   # GET /musics/1.json
   def show
     @music = Music.find(params[:id])
+    if session[:user_id] and @rating = @music.ratings.find_by_user_id(session[:user_id])
+      @my_rating = @rating.stars
+    end
 
     respond_to do |format|
       format.html # show.html.erb

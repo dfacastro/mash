@@ -4,9 +4,11 @@ require "mp3info"
 class Music < ActiveRecord::Base
   
   belongs_to :user
+  has_many :ratings, :dependent => :destroy
   
   
-  before_save :validate_file
+  before_create :validate_file
+  before_save :calculate_average
 
   validates :filename, :uniqueness => true
   validates :title, :author, :presence => true
@@ -19,6 +21,10 @@ class Music < ActiveRecord::Base
     (self.length/60).to_s + ':' + (self.length%60).to_s
   end
   
+  def calculate_average
+    self.average = Rating.where(:music_id => self.id).average(:stars) || 0
+    self.total_ratings = Rating.where(:music_id => self.id).count
+  end
 
 
   private

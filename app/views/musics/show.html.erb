@@ -3,12 +3,38 @@
 <h1><%= @music.title %></h1>
 <h2>by <%= @music.author %> </h2>
 <h3>uploaded by <%= @music.user.name %></h3>
+<p id="avg">
+	<%= music_ratings(@music) %>
+</p>
 
 <input type="hidden" id="file_url" value="<%= @music.filename %>">
 <div id="player">
-<p id="desc"><%= @music.description %></p>
+	<p id="desc"><%= @music.description %></p>
 </div>
 
+<br/>
+
+<% if session[:user_id] %>
+	<%= form_tag( rate_path(:music_id => @music.id, :format => :js), :id => 'rating_form', :remote => true) do%>
+		Rate this sMash!
+		<div>
+			<% for i in 1..5%>
+				<input name="star" type="radio" class="star" value="<%= i %>" <%= "checked='checked'".html_safe if @my_rating == i%>/>
+			<% end %>
+		</div>
+	<% end %>
+<% else %>
+	Please login to rate this sMash!
+<% end %>
 
 
-<%= link_to 'Back', :back %>
+<br/><br/><br/><%= link_to 'Back', :back %>
+
+<script>
+	$('.star').rating({
+		callback: function(value, link){
+										$(this.form).ajaxSubmit();
+				},
+		required: true
+	});
+</script>

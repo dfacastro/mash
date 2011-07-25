@@ -2,6 +2,7 @@ require 'digest/sha2'
 
 class User < ActiveRecord::Base
   has_many :musics, :dependent => :destroy
+  has_many :ratings, :dependent => :destroy
   
   before_create :generate_confirmation_code
   

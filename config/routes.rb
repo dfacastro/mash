@@ -1,5 +1,7 @@
 Mash::Application.routes.draw do
   
+  #resources :ratings
+
 =begin
   get "session/new"
 
@@ -21,6 +23,8 @@ Mash::Application.routes.draw do
     delete 'listen' => :destroy
     get 'my_uploads' => :my_uploads
   end
+  
+  match 'music/:music_id/rate' => 'ratings#rate', :as => :rate, :via => :post
   
   controller :session do
     #get 'login' => :new
