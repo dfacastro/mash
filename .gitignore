@@ -7,3 +7,7 @@ doc/*
 public/saved/*
 public/temp/*
 test/fixtures/files/*
+
+Gemfile
+Gemfile.lock
+config/database.yml
