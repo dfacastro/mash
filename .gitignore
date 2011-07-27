@@ -11,3 +11,5 @@ test/fixtures/files/*
 Gemfile
 Gemfile.lock
 config/database.yml
+
+.idea/*
