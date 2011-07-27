@@ -20,6 +20,14 @@ class MusicsController < ApplicationController
       @my_rating = @rating.stars
     end
 
+    unless session[:hits] and session[:hits].include? @music.id
+      session[:hits] ||= []
+      session[:hits] << @music.id
+
+      @music.hits += 1
+      @music.save
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @music }

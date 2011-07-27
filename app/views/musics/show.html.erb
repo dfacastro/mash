@@ -6,6 +6,9 @@
 <p id="avg">
 	<%= music_ratings(@music) %>
 </p>
+<p>
+  Viewed by <%= pluralize(@music.hits, 'person') %>.
+</p>
 
 <input type="hidden" id="file_url" value="<%= @music.filename %>">
 <div id="player">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725035104) do
+ActiveRecord::Schema.define(:version => 20110727143029) do
 
   create_table "musics", :force => true do |t|
     t.string   "author"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110725035104) do
     t.integer  "user_id"
     t.decimal  "average",       :precision => 8, :scale => 2
     t.integer  "total_ratings"
+    t.integer  "hits",                                        :default => 0
   end
 
   create_table "ratings", :force => true do |t|
