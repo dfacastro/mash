@@ -46,16 +46,20 @@ class CommentsController < ApplicationController
     respond_to do |format|
       begin
         @comment = Comment.find(params[:id])
-        @comment.update_attribute(:content, params[:content])
 
-        if @comment.save
+        if @comment.user.id != session[:user_id]
           format.html { redirect_to listen_url, :id => @comment.music.id }
-          format.js { @music = @comment.music
-                      @new_comment = @comment}
+          format.js { render :js => "alert('You are not the author of this comment.');" }
         else
-          format.html { redirect_to listen_url, :id => @comment.music.id, :notice => 'Comment could not be edited.' }
-          format.js {  }
-
+          @comment.update_attribute(:content, params[:content])
+          if @comment.save
+            format.html { redirect_to listen_url, :id => @comment.music.id }
+            format.js { @music = @comment.music
+                        @new_comment = @comment}
+          else
+            format.html { redirect_to listen_url, :id => @comment.music.id, :notice => 'Comment could not be edited.' }
+            format.js { render :js => "alert('Comment could not be edited.');"  }
+          end
         end
       rescue ActiveRecord::RecordNotFound
         format.html { redirect_to home_url, :alert => 'Comment not found' }

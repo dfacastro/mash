@@ -1,3 +1,4 @@
-$('#comments').replaceWith('<%=  escape_javascript(render("comments", :layout => false)) %>');
-$('#fresh_comment').show();
-$('#fresh_comment').effect("highlight", {}, 3000);
+$('.fresh_comment').removeClass('fresh_comment');
+$(".comment[data-value='<%= @new_comment.id %>']").replaceWith('<%=  escape_javascript(render(:partial => "comment", :locals => { :comment => @new_comment}, :layout => false)) %>');
+$('.fresh_comment').show();
+$('.fresh_comment').effect("highlight", {}, 500);

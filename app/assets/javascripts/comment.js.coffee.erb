@@ -9,10 +9,10 @@ $ ->
    return false
 
 $ ->
-  $("#comments").parent().delegate ".content", "click", ->
+  $("#comments").parent().delegate ".editable .content", "click", ->
     html = '''
               <form accept-charset="UTF-8" action="/comment?id=''' + $(this).parent().data('value') + '''" data-remote="true" id="updt_comment_form" method="post">
-              <textarea name='content'>''' + $(this).text()+ '''</textarea>
+              <textarea name='content'>''' + $(this).html()+ '''</textarea>
               </form>
            '''
     $(this).hide()
