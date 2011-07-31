@@ -15,7 +15,7 @@ class MusicsController < ApplicationController
   # GET /musics/1
   # GET /musics/1.json
   def show
-    @music = Music.find(params[:id])
+    @music = Music.find(params[:id], :include => [{:comments => :user}, :user])
     if session[:user_id] and @rating = @music.ratings.find_by_user_id(session[:user_id])
       @my_rating = @rating.stars
     end

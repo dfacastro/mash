@@ -19,7 +19,7 @@ $(document).ready(function() {
 });
 */
 
-
+      /*
 $(document).ready(function() {
 	$('h1').click(function() {
 	  $('h1').hide('slow', function() {
@@ -27,8 +27,13 @@ $(document).ready(function() {
 	  });
 	});
 });
-
-
+    */
+                  /*
 $(document).ready(function() {
-
-});
+    $("#new_comment_form").submit(function(){
+                if($("#content").val() == '') {
+                    alert("Please fill in all the required fields (indicated by *)");
+                    return false;
+                }
+            });
+});             */

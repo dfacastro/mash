@@ -17,18 +17,23 @@
 
 <br/>
 
-<% if session[:user_id] %>
-	<%= form_tag( rate_path(:music_id => @music.id, :format => :js), :id => 'rating_form', :remote => true) do%>
-		Rate this sMash!
-		<div>
-			<% for i in 1..5%>
-				<input name="star" type="radio" class="star" value="<%= i %>" <%= "checked='checked'".html_safe if @my_rating == i%>/>
-			<% end %>
-		</div>
-	<% end %>
-<% else %>
-	Please login to rate this sMash!
-<% end %>
+<div>
+    <% if session[:user_id] %>
+        <%= form_tag( rate_path(:music_id => @music.id, :format => :js), :id => 'rating_form', :remote => true) do%>
+            Rate this sMash!
+            <div>
+                <% for i in 1..5%>
+                    <input name="star" type="radio" class="star" value="<%= i %>" <%= "checked='checked'".html_safe if @my_rating == i%>/>
+                <% end %>
+            </div>
+        <% end %>
+    <% else %>
+        Please login to rate this sMash!
+    <% end %>
+</div>
+
+
+<%= render :partial => "comments/comments", :locals => {:comments => @music.comments, :music => @music} %>
 
 
 <br/><br/><br/><%= link_to 'Back', :back %>

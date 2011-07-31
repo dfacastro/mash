@@ -5,6 +5,7 @@ class Music < ActiveRecord::Base
   
   belongs_to :user
   has_many :ratings, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   
   
   before_create :validate_file
@@ -16,6 +17,10 @@ class Music < ActiveRecord::Base
   attr_accessor :file
   
   public
+
+  def add_comment(content, user_id)
+    comments.build(:content => content, :user_id => user_id)
+  end
   
   def get_length
     (self.length/60).to_s + ':' + (self.length%60).to_s

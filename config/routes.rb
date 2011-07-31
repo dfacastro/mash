@@ -1,5 +1,7 @@
 Mash::Application.routes.draw do
   
+  get "comment/create"
+
   #resources :ratings
 
 =begin
@@ -25,6 +27,9 @@ Mash::Application.routes.draw do
   end
   
   match 'music/:music_id/rate' => 'ratings#rate', :as => :rate, :via => :post
+  match 'music/:music_id/comment' => 'comments#create', :as => :comment, :via => :post
+  match 'comment' => 'comments#destroy', :as => :del_comment, :via => :delete
+  match 'comment' => 'comments#update', :as => :updt_comment, :via => :post
   
   controller :session do
     #get 'login' => :new

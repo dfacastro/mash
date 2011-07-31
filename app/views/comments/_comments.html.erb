@@ -1,0 +1,19 @@
+<div id="comments">
+
+  <br/><br/><br/>
+  <p>
+    Comments on this sMash
+  </p>
+
+  <%# @new_comment = new_comment if defined? new_comment %>
+  <%= render @music.comments %>
+
+  <p>
+    <%= form_tag( comment_path(:music_id => @music.id), :id => 'new_comment_form', :remote => true) do%>
+        <%= text_area_tag 'content' %>
+        <%= submit_tag 'Save' %>
+    <% end %>
+  </p>
+
+
+</div>

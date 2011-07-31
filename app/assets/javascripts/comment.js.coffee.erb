@@ -1,0 +1,24 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
+$ ->
+ $("#new_comment_form").submit ->
+  if $('#content').val() == ''
+   alert('Please enter your comment.')
+   return false
+
+$ ->
+  $("#comments").parent().delegate ".content", "click", ->
+    html = '''
+              <form accept-charset="UTF-8" action="/comment?id=''' + $(this).parent().data('value') + '''" data-remote="true" id="updt_comment_form" method="post">
+              <textarea name='content'>''' + $(this).text()+ '''</textarea>
+              </form>
+           '''
+    $(this).hide()
+    $(html).appendTo($(this).parent())
+    $(this).parent().children('form').children('textarea').focus()
+
+$ ->
+    $("#comments").parent().delegate "#updt_comment_form textarea", "blur", ->
+        $(this).parent().submit()
