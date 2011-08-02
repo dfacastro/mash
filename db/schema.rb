@@ -10,12 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110727191851) do
+ActiveRecord::Schema.define(:version => 20110802020021) do
 
   create_table "comments", :force => true do |t|
     t.integer  "music_id"
     t.integer  "user_id"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "downloads", :force => true do |t|
+    t.integer  "music_id"
+    t.string   "ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -12,7 +12,7 @@ $ ->
   $("#comments").parent().delegate ".editable .content", "click", ->
     html = '''
               <form accept-charset="UTF-8" action="/comment?id=''' + $(this).parent().data('value') + '''" data-remote="true" id="updt_comment_form" method="post">
-              <textarea name='content'>''' + $(this).html().replace(/(<br>)/g, "\r\n")+ '''</textarea>
+              <textarea name='content' rows="''' + $(this).html().split('<br>').length + '''" cols="40">''' + $(this).html().replace(/(<br>)/g, "\r\n")+ '''</textarea>
               </form>
            '''
     $(this).hide()

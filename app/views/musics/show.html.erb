@@ -32,6 +32,7 @@
     <% end %>
 </div>
 
+<%= link_to("download", {:controller => "downloads", :action => "get", :id => @music.id}, :remote => true) %>
 
 <%= render :partial => "comments/comments", :locals => {:comments => @music.comments, :music => @music} %>
 
