@@ -24,9 +24,9 @@ Mash::Application.routes.draw do
     get 'upload' => :new
     post 'upload' => :create
     get 'listen' => :show
-    get 'download' => :download
     delete 'listen' => :destroy
     get 'my_uploads' => :my_uploads
+    get 'search' => :search, :as => :search
   end
   
   match 'music/:music_id/rate' => 'ratings#rate', :as => :rate, :via => :post

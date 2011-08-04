@@ -95,14 +95,19 @@ class MusicsController < ApplicationController
       format.json { head :ok }
     end
   end
-  
-  def download
 
-    
-  end
-  
   def my_uploads
     @musics = Music.where(:user_id => session[:user_id])
     render(:index)
+  end
+
+  def search
+    @musics = Music.where("author LIKE :str OR title LIKE :str OR description LIKE :str ", :str => '%' + params[:search_str] + '%')
+
+    respond_to do |format|
+      format.html
+      format.json { head :ok }
+    end
+
   end
 end

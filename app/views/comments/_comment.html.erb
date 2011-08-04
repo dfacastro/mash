@@ -1,8 +1,8 @@
 <%= new_comment_if( defined?(@new_comment) && @new_comment == comment, comment.id, comment.user.id) do %>
 
 
-    <b><%= comment.user.name %></b> commented at <%= comment.created_at.strftime("%I:%M%p %d/%m/%Y") %>
+    <div class="author" ><%= comment.user.name %></div> <div class="date"><%= comment.created_at.strftime("%I:%M%p %d/%m/%Y") %> </div>
+    <div class="content"><%= sanitize(comment.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')) %></div>
     <%= link_to 'delete', del_comment_path(:id => comment.id), :method => :delete, :remote => true if comment.user.id == session[:user_id] %>
-    <p class="content"><%= sanitize(comment.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')) %></p>
 
 <% end %>

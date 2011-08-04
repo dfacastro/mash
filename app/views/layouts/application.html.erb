@@ -11,49 +11,56 @@
     <p id="notice" ><%= flash[:alert] %></p>
   <% end %>
 
-<div id="banner">
-	<div id="login">
-	<% unless session[:user_id] %>
+    <div id="banner">
+        <div id="login">
+        <% unless session[:user_id] %>
 
-		<%= form_tag(login_path) do %>
-		<div>
-			<label for="username">Name:</label>
-			<%= text_field_tag :username, params[:username]%>
-		</div>
-		</br>
-		<div>
-			<label for="password">Password:</label>
-			<%= password_field_tag :password, params[:password]%>
-		</div>
-		</br>
-		<div>
-			<%= submit_tag 'Login'%>
-			<% end %>
-			<%= button_to 'New Account', new_user_path, :method => :get %>
-		</div>
-		
-	<% else %>
+            <%= form_tag(login_path) do %>
+            <div>
+                <label for="username">Name:</label>
+                <%= text_field_tag :username, params[:username]%>
+            </div>
+            </br>
+            <div>
+                <label for="password">Password:</label>
+                <%= password_field_tag :password, params[:password]%>
+            </div>
+            </br>
+            <div>
+                <%= submit_tag 'Login'%>
+                <% end %>
+                <%= button_to 'New Account', new_user_path, :method => :get %>
+            </div>
 
-	
-		<%= button_to 'Logout', logout_path, :method => :delete %>
-	
-	<% end %>
-	</div>
-	<h2>
-		Welcome to sMash
-	</h2>
-</div>
+        <% else %>
 
-<div id="bar">
-	<ul>
-		<li><%= link_to "Home", home_url %></li>
-		<%= ("<li>" + link_to('My Uploads', my_uploads_url) + '</li>').html_safe if session[:user_id]%>
-		<li><a href="contact.asp">Contact</a></li>
-		<li><a href="about.asp">About</a></li>
-	</ul>
-</div>
+
+            <%= button_to 'Logout', logout_path, :method => :delete %>
+
+        <% end %>
+        </div>
+        <h2>
+            Welcome to sMash
+        </h2>
+    </div>
+
+    <div id="search_bar">
+      <%= form_tag(search_path, :method => :get) do %>
+          <%= text_field_tag :search_str, params[:search_str] %>
+          <%= submit_tag "Search", :id => "search_button" %>
+      <% end %>
+    </div>
+
+    <div id="bar">
+        <ul>
+            <li><%= link_to "Home", home_url %></li>
+            <%= ("<li>" + link_to('My Uploads', my_uploads_url) + '</li>').html_safe if session[:user_id]%>
+            <li><a href="contact.asp">Contact</a></li>
+            <li><a href="about.asp">About</a></li>
+        </ul>
+    </div>
 	
-<%= yield %>
+    <%= yield %>
 
 </body>
 </html>
