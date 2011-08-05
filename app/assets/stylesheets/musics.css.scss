@@ -6,3 +6,29 @@ body.musics {
   // Add the musics class to your body tag
   // Then, place scoped styles here.
 }
+
+table#search_results {
+
+    border-collapse: collapse;
+    th:not(:empty) {
+        //margin-right: 50px;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+
+        background-color: #747373;
+        color: #ffffff;
+    }
+
+    td {
+        text-align: center;
+        border-bottom: 1px solid #000000;
+
+    }
+
+    .star {
+        width: 30px;
+        height: auto;
+    }
+
+}

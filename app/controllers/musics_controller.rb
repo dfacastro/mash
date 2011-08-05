@@ -103,6 +103,7 @@ class MusicsController < ApplicationController
 
   def search
     @musics = Music.where("author LIKE :str OR title LIKE :str OR description LIKE :str ", :str => '%' + params[:search_str] + '%')
+                    .order("average * total_ratings DESC")
 
     respond_to do |format|
       format.html

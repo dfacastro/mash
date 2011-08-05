@@ -1,0 +1,34 @@
+<h1>Listing musics</h1>
+
+<table id="search_results">
+  <tr>
+    <th>Author</th>
+    <th>Title</th>
+    <th>Downloadable</th>
+    <th>Length</th>
+    <th>Rated</th>
+    <th>Hits</th>
+
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @musics.each do |music| %>
+  <tr>
+    <td><%= music.author %></td>
+    <td><%=  link_to music.title , listen_path(:id => music.id) %></td>
+    <td><%= if music.downloadable then "✓" else "✗" end %></td>
+    <td><%= music.get_length %></td>
+    <td><%= music.average %> <%= image_tag "patrick.gif", :class => "star" %></td>
+    <td><%= music.hits %></td>
+
+    <td><%= link_to 'Show', listen_path(:id => music.id) %></td>
+    <td><%= link_to 'Destroy', listen_path, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Music', upload_path %>
