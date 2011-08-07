@@ -1,5 +1,8 @@
 Mash::Application.routes.draw do
-  
+
+
+  resources :playlists
+
   get "downloads/get"
   get "downloads/download", :as => :download
 
@@ -33,6 +36,7 @@ Mash::Application.routes.draw do
   match 'music/:music_id/comment' => 'comments#create', :as => :comment, :via => :post
   match 'comment' => 'comments#destroy', :as => :del_comment, :via => :delete
   match 'comment' => 'comments#update', :as => :updt_comment, :via => :post
+  match 'playlist/:playlist_id/new_entry/:music_id' => 'entries#create', :as => :new_entry, :via => :post
   
   controller :session do
     #get 'login' => :new

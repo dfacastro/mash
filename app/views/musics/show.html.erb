@@ -34,6 +34,30 @@
 
 <%= link_to("download", {:controller => "downloads", :action => "get", :id => @music.id}, :remote => true) %>
 
+<div id="add">
+  <button type="button" id="add_button">Add to Playlist</button>
+  <div id="add_menu" class="menu">
+    <table>
+        <% @playlists.each do |pl| %>
+            <tr>
+              <td>
+                <%= link_to new_entry_path(:music_id => @music.id, :playlist_id => pl.id), :method => :post, :remote => true  do %>
+                    <span><%= pl.name %></span>
+                <% end %>
+              </td>
+
+              <% if pl.has_entry(@music.id) %>
+                <td class="added">✔</td>
+              <% else %>
+                <td></td>
+              <% end %>
+
+            </tr>
+        <% end %>
+    </table>
+  </div>
+</div>
+
 <%= render :partial => "comments/comments", :locals => {:comments => @music.comments, :music => @music} %>
 
 

@@ -28,6 +28,8 @@ class MusicsController < ApplicationController
       @music.save
     end
 
+    @playlists = Playlist.where(:user_id => session[:user_id])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @music }

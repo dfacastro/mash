@@ -4,6 +4,7 @@ require "mp3info"
 class Music < ActiveRecord::Base
   
   belongs_to :user
+  belongs_to :entry
   has_many :ratings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :downloads
