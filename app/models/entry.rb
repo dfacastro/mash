@@ -1,4 +1,5 @@
 class Entry < ActiveRecord::Base
   belongs_to :playlist
-  has_one :music
+  belongs_to :music
+  default_scope :order => 'order_no'
 end

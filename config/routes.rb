@@ -7,6 +7,7 @@ Mash::Application.routes.draw do
   get "downloads/download", :as => :download
 
   get "comment/create"
+  post "playlists/sort"
 
   #resources :ratings
 

@@ -1,14 +1,98 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= @playlist.user_id %>
-</p>
+<div id="playlist">
+    <p>
+      <b>Name:</b>
+      <%= @playlist.name %>
+    </p>
 
-<p>
-  <b>Name:</b>
-  <%= @playlist.name %>
-</p>
+    <ul id="playlist_entries">
+      <% @playlist.entries.each do |en| %>
+          <li id="entry_<%= en.id -%>" data-music_id="<%= en.music.id %>">
+            <span class="name">
+              <%= link_to en.music.author + " - " + en.music.title, listen_url(:id => en.music.id) -%>
+            </span>
+            <span class="handle">[handle]</span>
+          </li>
+        <%= %>
+      <% end %>
+    </ul>
+
+    <ul id="other_playlists">
+      <h3>My Playlists</h3>
+      <% @others.each do |pl| %>
+          <li id="playlist_<%= pl.id -%>" class="droppable">
+               <span></span><%= link_to pl.name, playlist_path(pl) %>
+          </li>
+      <% end %>
+    </ul>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var dropped = false;
+        var draggable_sibling;
+
+        $('#playlist_entries').sortable(
+            {
+                //axis: 'y',
+                dropOnEmpty:false,
+                handle: '.handle',
+                cursor: 'url(/closedhand.bmp),url(/closedhand.cur), auto',
+                items: 'li',
+                opacity: 0.4,
+                scroll: true,
+                revert: 100,
+                update: function(){
+                    $.ajax({
+                        type: 'post',
+                        data: $('#playlist_entries').sortable('serialize') + '&id=<%=@playlist.id%>',
+                        dataType: 'script',
+                        complete: function(request){
+                            //$('#playlist_entries').effect('highlight');
+                        },
+                        url: '/playlists/sort'})
+                },
+                start: function(event, ui) {
+                    draggable_sibling = $(ui.item).prev();
+                },
+                stop: function(event, ui) {
+                    if (dropped) {
+                        if (draggable_sibling.length == 0)
+                            $('#playlist_entries').prepend(ui.item);
+
+                        draggable_sibling.after(ui.item);
+                        dropped = false;
+                    }
+                }
+            });
+
+            $(".droppable").droppable({
+                activeClass: 'active',
+                hoverClass:'hovered',
+                tolerance: 'pointer',
+                drop:function(event,ui){
+                    $(this).addClass("adding");
+                    dropped = true;
+                    $(event.target).addClass('dropped');
+                    //alert($(this).attr("id").substring(9));
+                    //alert(ui.draggable.data("music_id"));
+                    var playlist_id = $(this).attr("id").substring(9);
+                    var music_id = ui.draggable.data("music_id");
+                    $.ajax({
+                        type: 'post',
+                        //data: {playlist_id : $(this).attr("id").substring(9), music_id : ui.draggable.data("music_id")},
+                        dataType: 'script',
+                        complete: function(request){
+                            setTimeout("$('.adding span').text('').parent().removeClass('adding')", 1500);
+                        },
+                        url: '/playlist/' + playlist_id + "/new_entry/" + music_id})
+                }
+            });
+        }
+    );
+</script>
 
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |

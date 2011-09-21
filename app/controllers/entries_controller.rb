@@ -10,12 +10,12 @@ class EntriesController < ApplicationController
         if @playlist.entries.select(:music_id).map(&:music_id).include? @music_id.to_i
           @playlist.delete_entry(@music_id)
           @playlist.save
-          format.js { render :js => "$('.adding td').last().text('✘').removeClass('added').addClass('deleted').effect('pulsate', {times: 3}, 300);
+          format.js { render :js => "$('.adding span').last().text('✘').removeClass('added').addClass('deleted').effect('pulsate', {times: 3}, 300);
                                     setTimeout(window.closeMenu, 1500);"}
         else
           @playlist.add_entry(@music_id)
           @playlist.save
-          format.js { render :js => "$('.adding td').last().text('✔').removeClass('deleted').addClass('added').effect('pulsate', {times: 3}, 300);
+          format.js { render :js => "$('.adding span').last().text('✔').removeClass('deleted').addClass('added').effect('pulsate', {times: 3}, 300);
                                     setTimeout(window.closeMenu, 1500);"}
         end
       end

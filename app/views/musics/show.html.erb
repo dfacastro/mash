@@ -42,16 +42,17 @@
             <tr>
               <td>
                 <%= link_to new_entry_path(:music_id => @music.id, :playlist_id => pl.id), :method => :post, :remote => true  do %>
-                    <span><%= pl.name %></span>
+                    <%= pl.name %>
                 <% end %>
               </td>
 
+              <td>
               <% if pl.has_entry(@music.id) %>
-                <td class="added">✔</td>
+                <span class="added">✔</span>
               <% else %>
-                <td></td>
+                <span></span>
               <% end %>
-
+              </td>
             </tr>
         <% end %>
     </table>

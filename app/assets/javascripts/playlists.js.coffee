@@ -44,7 +44,7 @@ $ ->
     $(this).parent().children('tr').not($(this)).children('td').each ->
       $(this).slideUp("fast")
     #$(this).find('img').show()
-    $(this).find('td').last().html("<img class='loading' src='/assets/loading.gif'/>")
+    $(this).find('span').last().html("<img class='loading' src='/assets/loading.gif'/>")
     $(this).find('img').show()
 
 

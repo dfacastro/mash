@@ -8,6 +8,29 @@ body.playlists {
 }
 
 
+body #playlist {
+    #other_playlists {
+        float: right;
+        list-style-type: none;
+
+        * {
+            text-align:right;
+        }
+
+        .hovered {
+            color:red;
+            font-color: green;
+            background: #CCF;
+        }
+
+    }
+
+    #playlist_entries {
+        display:inline-block;
+    }
+
+}
+
 #add {
     display:inline;
 }
@@ -18,12 +41,16 @@ body.playlists {
   position: absolute;
   //display: none;
 
-  img { padding-left: 20px; float: right; display:none; }
+  img {
+      padding-left: 20px;
+      float: right;
+      display:none;
+  }
 
   a {
     text-decoration:none;
     display:block;
-                          padding: 10px;
+    //padding: 10px;
     padding-right: 25px;
     color: darken(#ffffff, 30% );
   }
@@ -35,7 +62,7 @@ body.playlists {
     background: rgba(0, 0, 0, 0);
   }
   td:first-of-type {
-    padding: 10px;
+    padding: 5px;
     padding-right: 25px;
 
     background: -moz-linear-gradient(left, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 80%, rgba(0,0,0,0) 100%); /* FF3.6+ */
@@ -57,12 +84,12 @@ body.playlists {
     background: linear-gradient(left, rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 80%,rgba(0,0,0,0) 100%); /* W3C */
   }
 
-  td.added {
+  span.added {
     color: green;
     font-size: 24px;
   }
 
-  td.deleted {
+  span.deleted {
     color: red;
     font-size: 24px;
   }

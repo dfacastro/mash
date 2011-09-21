@@ -2,7 +2,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.where(:user_id => session[:user_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +14,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1.json
   def show
     @playlist = Playlist.find(params[:id])
+    @others = Playlist.where(['user_id = ? AND id != ?' ,session[:user_id], @playlist.id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -79,5 +80,15 @@ class PlaylistsController < ApplicationController
       format.html { redirect_to playlists_url }
       format.json { head :ok }
     end
+  end
+
+  def sort
+    @playlist = Playlist.find(params[:id])
+    @playlist.entries.each do |en|
+      en.order_no = params[:entry].index(en.id.to_s) + 1
+      en.save
+    end
+
+    render :nothing => true
   end
 end
